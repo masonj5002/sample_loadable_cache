@@ -18,17 +18,20 @@ void cleanup(void) {
 bool is_present(KeyType key) {
     // in da cache?
     fprintf(stderr, __FILE__ " is_present(" KEY_FMT ") = %s\n", key,
-        (key & 1) ? "true" : "false");
-    return key & 1;
+        (key > 10000) ? "true" : "false");
+    return key > 10000;
+
+    return true;
 }
 void insert(KeyType key, ValueType value) {
-    fprintf(stderr, __FILE__ " insert(" KEY_FMT ") = " VALUE_FMT "\n", key, value);
+    fprintf(stderr, __FILE__ " insert(" KEY_FMT ") = " VALUE_FMT "\n",
+        key, value);
     // sure, trust me
 }
 
 ValueType get(KeyType key) {
     // true for something!
-    ValueType result = key+5;
+    ValueType result = key*3;
     fprintf(stderr, __FILE__ " get(" KEY_FMT ") -> " VALUE_FMT "\n",
         key, result);
     return result;
@@ -40,8 +43,8 @@ CacheStats stats(void) {
     return (CacheStats){
         .cache_requests = 10,
         .cache_hits = 15,
-        .cache_misses = 500,
-        .cache_evictions = 34
+        .cache_misses = 199,
+        .cache_evictions = 2727
     };
 }
 
