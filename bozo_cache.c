@@ -1,59 +1,46 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "cache.h"
+
+#define UNUSED(x) (void)(x)
 
 /* THIS IS A BOGUS CACHE PROVIDER */
 /* It implements the required functions but NONE of them are real. */
 
-ValueType my_cache[10000];
+ValueType _caching_provider(KeyType key) {
+    fprintf(stderr, __FILE__ " caching_provider(" KEY_FMT ")\n", key);
+    return arc4random_uniform(key*5);
+}
 
-void init(void) {
+ProviderFunction set_provider(ProviderFunction downstream) {
+    fprintf(stderr, __FILE__ " set_provider()\n");
+    UNUSED(downstream);
+    return _caching_provider;
+}
+
+void initialize(void) {
     // set up your vars
-    fprintf(stderr, __FILE__ " init()\n");
+    fprintf(stderr, __FILE__ " initialize()\n");
 }
 void cleanup(void) {
     // free yo junk
     fprintf(stderr, __FILE__ " cleanup()\n");
 }
-bool is_present(KeyType key) {
-    // in da cache?
-    fprintf(stderr, __FILE__ " is_present(" KEY_FMT ") = %s\n", key,
-        (key & 1) ? "true" : "false");
-    return key & 1;
-}
-void insert(KeyType key, ValueType value) {
-    fprintf(stderr, __FILE__ " insert(" KEY_FMT ") = " VALUE_FMT "\n", key, value);
-    // sure, trust me
+
+void reset_statistics(void) {
+    fprintf(stderr, __FILE__ " reset_statistics()\n");
 }
 
-ValueType get(KeyType key) {
-    // true for something!
-    ValueType result = key+5;
-    fprintf(stderr, __FILE__ " get(" KEY_FMT ") -> " VALUE_FMT "\n",
-        key, result);
-    return result;
-}
-
-CacheStats stats(void) {
+CacheStat* statistics(void) {
     // maybe better numbers would be nice
-    fprintf(stderr, __FILE__ " stats()\n");
-    return (CacheStats){
-        .cache_requests = 10,
-        .cache_hits = 15,
-        .cache_misses = 500,
-        .cache_evictions = 34
-    };
-}
+    fprintf(stderr, __FILE__ " statistics()\n");
 
-
-CacheProvider provider_functions(void) {
-    fprintf(stderr, __FILE__ " functions retrieved!\n");
-    return (CacheProvider){
-        .initialize = init,
-        .cleanup = cleanup,
-        .is_present = is_present,
-        .get = get,
-        .insert = insert,
-        .stats = stats
-    };
+    CacheStat *statsdata = malloc(5 * sizeof(CacheStat));
+    statsdata[0] = (CacheStat){Cache_requests, 10};
+    statsdata[1] = (CacheStat){Cache_hits, 15};
+    statsdata[2] = (CacheStat){Cache_misses, 500};
+    statsdata[3] = (CacheStat){Cache_evictions, 34};
+    statsdata[4] = (CacheStat){END_OF_STATS, 0};
+    return statsdata;
 }
