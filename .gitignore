@@ -2,3 +2,4 @@
 main
 .history
 *.so
+.DS_Store
