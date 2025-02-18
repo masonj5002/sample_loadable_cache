@@ -6,6 +6,8 @@
 
 /* Simple memoizer */
 
+// only works with KeyType = int
+
 #define MAX_KEY 10000
 #define CACHE_SIZE MAX_KEY + 1
 ValueType cache[CACHE_SIZE];

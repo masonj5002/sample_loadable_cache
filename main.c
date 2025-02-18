@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
         printf("Done with test %2d: %d took %d steps\n", test_number,
                randomnumber, steps);
 
-        if (test_number == TEST_COUNT / 2) {
+        if (cache_installed && test_number == TEST_COUNT / 2) {
             printf("Taking a break. Resetting cache statistics.\n");
             cache->reset_statistics();
         }

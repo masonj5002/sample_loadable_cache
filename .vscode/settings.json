@@ -4,6 +4,7 @@
         "*.ndjson": "jsonl",
         "*.dbclient-js": "javascript",
         "stdbool.h": "c",
-        "dlfcn.h": "c"
+        "dlfcn.h": "c",
+        "cache.h": "c"
     }
 }
