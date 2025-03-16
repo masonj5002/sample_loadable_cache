@@ -1,3 +1,7 @@
+This is a example of a loadable cache created by Prof. Bruce McKenzie (CPSC-351-04, CSUF).
+
+I will add the Random Replacement cache function, in addition other caching methods.
+
 ## Example of **cache policies** and **dynamically loading a library**
 
 `cache.h` is a wrapper around a cache policy. The policy is loaded by `main()` from the `.so` file listed on the command line. If no `.so` is listed, no cache is present.
