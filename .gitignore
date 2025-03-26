@@ -2,4 +2,5 @@
 main
 .history
 *.so
+*.swp
 .DS_Store
