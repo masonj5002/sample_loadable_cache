@@ -6,5 +6,6 @@
         "stdbool.h": "c",
         "dlfcn.h": "c",
         "cache.h": "c"
-    }
+    },
+    "C_Cpp.default.intelliSenseMode": "macos-clang-x64"
 }
