@@ -1,6 +1,6 @@
 
 OBJS = main.o collatz.o cache.o
-LIBS = libbozo_cache.so librex_cache.so libmemoize.so liblast_recently_used.so libpassthrough.so librandom_replacement.so
+LIBS = libbozo_cache.so librex_cache.so libmemoize.so liblast_recently_used.so libpassthrough.so librandom_replacement.so libleast_recently_used.so
 
 all: main $(LIBS)
 
