@@ -1,3 +1,5 @@
+// KNOWN ISSUE: random_replacement.c WRITES TO A RANDOM LOCATION IN THE ARRAY
+// *EVERY TIME* (NOT JUST WHEN THE CACHE IS FULL).
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
