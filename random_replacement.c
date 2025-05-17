@@ -11,7 +11,7 @@ typedef struct {
     bool valid;
 } CacheEntry;
 
-#define CACHE_SIZE 1000
+#define CACHE_SIZE 20 // 1000
 CacheEntry cache[CACHE_SIZE];
 int current_cache_size;
 
@@ -99,6 +99,7 @@ void _insert(KeyType key, ValueType value) {
     } else {
         // Cache is full, randomly evict
         index = rand() % CACHE_SIZE;
+        fprintf(stderr, __FILE__ " Cache is full. Evicting at %d\n", index);
     }
 
     cache[index].key   = key;
